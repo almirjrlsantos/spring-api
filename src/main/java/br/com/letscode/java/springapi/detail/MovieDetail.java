@@ -2,8 +2,6 @@ package br.com.letscode.java.springapi.detail;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,11 +33,8 @@ public class MovieDetail {
     private String language;
     @JsonProperty("Country")
     private String country;
-
     @JsonProperty("imdbRating")
     private String imdbRating;
-//    @JsonProperty("Ratings")
-//    private List<String> ratings;
 
     public void setYear(String year) {
         this.year = convertYear(year);

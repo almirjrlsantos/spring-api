@@ -19,7 +19,6 @@ public class FileCsv {
 
     public List<ResultSearch> cacheCsv(String title) {
         Map<String, List<ResultSearch>> searches = addCacheClass();;
-
         Optional<Map.Entry<String, List<ResultSearch>>> mmFilter = searches.entrySet().stream()
                 .filter(f -> f.getKey().equals(title))
                 .findFirst();
@@ -51,7 +50,6 @@ public class FileCsv {
                 moviesCsv.add(new MovieMinimal(imdbID, title, year));
                 resultSearches.add(new ResultSearch(moviesCsv, total, response));
             }
-
             map.put(wordsSearch, resultSearches);
         }
         return map;
@@ -80,7 +78,6 @@ public class FileCsv {
 
     private String stringCsv(ResultSearch rs, String wordsSearch) {
         StringBuilder add = new StringBuilder();
-
         add.append(wordsSearch + ";");
 
         List<MovieMinimal> movieMinimals  = rs.getResultList();

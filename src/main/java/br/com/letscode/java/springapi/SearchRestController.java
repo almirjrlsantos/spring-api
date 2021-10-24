@@ -1,11 +1,8 @@
 package br.com.letscode.java.springapi;
 
+import br.com.letscode.java.springapi.detail.MovieDetail;
 import br.com.letscode.java.springapi.detail.MovieDetailRestRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
@@ -20,10 +17,9 @@ public class SearchRestController {
         this.restRepositoryDetail = restRepositoryDetail;
     }
 
-    //"/movies/{id}"
     @GetMapping("/movies/{id}")
-    public MovieMinimalRestRepository detail(@PathVariable String id){
-        return this.restRepository;
+    public MovieDetail detail(@PathVariable("id") String id){
+        return this.restRepositoryDetail.detail(id);
     }
 
     @GetMapping("/search")
@@ -37,6 +33,4 @@ public class SearchRestController {
             return resultSearch.stream().findFirst();
         }
     }
-
-
 }
