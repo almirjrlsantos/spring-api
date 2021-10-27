@@ -2,7 +2,9 @@ package br.com.letscode.java.springapi;
 
 import br.com.letscode.java.springapi.detail.MovieDetail;
 import br.com.letscode.java.springapi.detail.MovieDetailRestRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import java.util.*;
 
 @RestController
@@ -19,7 +21,11 @@ public class SearchRestController {
 
     @GetMapping("/movies/{id}")
     public MovieDetail detail(@PathVariable("id") String id){
-        return this.restRepositoryDetail.detail(id);
+        MovieDetail md = this.restRepositoryDetail.detail(id);
+        if (md.getImdbId() == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found!");
+        }
+        return md;
     }
 
     @GetMapping("/search")

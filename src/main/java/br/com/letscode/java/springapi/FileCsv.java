@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileCsv {
+    private final String FILE_CSV = "csv/cache.csv";
 
     public Path getPath(){
-        URL url = this.getClass().getClassLoader().getResource("csv/cache.csv");
+        URL url = this.getClass().getClassLoader().getResource(FILE_CSV);
         File file = new File(url.getFile());
         return Path.of(file.getPath().replaceAll("%20", " "));
     }
@@ -20,7 +21,7 @@ public class FileCsv {
     public List<ResultSearch> cacheCsv(String title) {
         Map<String, List<ResultSearch>> searches = addCacheClass();;
         Optional<Map.Entry<String, List<ResultSearch>>> mmFilter = searches.entrySet().stream()
-                .filter(f -> f.getKey().equals(title))
+                .filter(f -> f.getKey().equalsIgnoreCase(title))
                 .findFirst();
 
         if (!mmFilter.isEmpty()){
